@@ -9,4 +9,4 @@ def say_hello(request):
 
 
 def welcome(request, name):
-   return render(request, "index.html",{"name": name})
+    return render(request, "index.html", {"name": name})

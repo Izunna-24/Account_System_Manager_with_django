@@ -12,15 +12,24 @@ class TransactionSerializer(serializers.ModelSerializer):
 class AccountSerializer(serializers.ModelSerializer):
     transactions = TransactionSerializer(many=True)
 
+    # transactions = serializers.StringRelatedField()
     class Meta:
         model = Account
-        fields = ['account_number', 'first_name', 'last_name', 'balance', 'account_type',
-                  'transactions']
-
-    # transactions = serializers.StringRelatedField()
+        fields = ['account_number', 'balance', 'account_type', 'transactions']
 
 
 class AccountCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
-        fields = ['first_name', 'last_name', 'pin', 'account_type']
+        fields = ['user', 'account_number', 'pin', 'account_type']
+
+
+class DepositWithdrawSerializer(serializers.Serializer):
+    account_number = serializers.CharField(max_length=10)
+    amount = serializers.DecimalField(max_digits=20, decimal_places=2)
+
+
+class TransferSerializer(serializers.Serializer):
+    sender_account = serializers.CharField(max_length=10)
+    receiver_account = serializers.CharField(max_length=10)
+    amount = serializers.DecimalField(max_digits=15, decimal_places=2)

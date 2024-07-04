@@ -131,7 +131,7 @@ class Withdrawal(APIView):
                 Transaction.objects.create(
                     account=account,
                     amount=amount,
-                    transaction_type='DEB'
+                    transaction_type='DEBIT'
                 )
             else:
                 return Response(data={'message': 'Insufficient balance'},

@@ -6,6 +6,7 @@ from .views import Deposit, Withdrawal
 
 router = SimpleRouter()
 router.register('accounts', views.AccountViewSet)
+router.register('transfer', views.TransactionViewSet, basename='transfer')
 
 urlpatterns = [
     # path('accounts', views.ListAccount.as_view()),
@@ -13,10 +14,8 @@ urlpatterns = [
     path('', include(router.urls)),
     path('deposit', Deposit.as_view()),
     path('withdraw', Withdrawal.as_view()),
-
+    path("checkbalance", views.CheckBalance.as_view()),
 
     # path('create', views.CreateAccount.as_view()),
-
-
 
 ]
